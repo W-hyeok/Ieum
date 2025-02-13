@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ieum?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+    # log
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  servlet:
+    multipart:
+      max-request-size: 30MB
+      max-file-size: 10MB
+
+# 케밥 표기법으로 작성하는 이유
+# 다른 api와의 호환성, spring boot의 설정 파일의 기본값
+kakao:
+  auth:
+    rest-api-key: "44fb6350a18142052af362d26c9f5207"
+    redirect-uri: "http://localhost:8080/api/kakaoLogin"
+    auth-code-path: "https://kauth.kakao.com/oauth/authorize"
+    access-token-url: "https://kauth.kakao.com/oauth/token"
+
+ieum:
+  upload:
+    path: upload
+
+# log
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace
+    org.springframework.security.web: debug
+
+# jsessionid ????? ??X
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
